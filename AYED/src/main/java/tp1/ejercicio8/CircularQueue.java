@@ -1,5 +1,7 @@
 package tp1.ejercicio8;
 
+import main.java.tp1.ejercicio8.Queue;
+
 import java.util.List;
 
 public class CircularQueue<T> extends Queue<T> {

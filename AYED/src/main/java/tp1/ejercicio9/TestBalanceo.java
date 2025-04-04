@@ -1,9 +1,10 @@
-package tp1.ejercicio9;
+package main.java.tp1.ejercicio9;
 
 public class TestBalanceo {
 
     //a. Indique qué estructura de datos utilizará para resolver este problema y cómo la utilizará
     //la estructura de datos que usaria para resolver el problema seria el Stack y lo usaria creando push por cada ( que haya y pop por cada ) y retornar un bool.
+
     public static void main(String[] args) {
         String exp ="{( ) [ ( ) ] }";
         System.out.println("La expresión está balanceada? " + Testeo(exp));

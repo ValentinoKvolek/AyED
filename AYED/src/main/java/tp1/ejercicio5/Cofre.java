@@ -1,4 +1,4 @@
-package tp1.ejercicio5;
+package main.java.tp1.ejercicio5;
 
 public class Cofre {
     int max;

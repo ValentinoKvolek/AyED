@@ -9,26 +9,20 @@ public class IncisoG {
     public List<Integer> calcularSucesion (int n) {
 
         List<Integer> sucesion = new ArrayList<>();
-        calcularSucesionRecursivo(n, sucesion);
+
+        if (n!= 1) {
+
+            if (n % 2 == 0) { //par
+                n = n / 2;
+                ;
+            } else { //impar
+                n = n * 3 + 1;
+            }
+            sucesion.add(n);
+            sucesion.addAll(calcularSucesion(n));
+        }
         return sucesion;
     }
-
-    public void calcularSucesionRecursivo(int num, List<Integer> sucesion){
-
-        sucesion.add(num);
-
-        if(num == 1) {
-            return; //llegue al caso base.
-        }
-
-        if(num % 2 == 0 ){   //par
-            calcularSucesionRecursivo(num/2,sucesion);
-        }
-        else{ //impar
-            calcularSucesionRecursivo(num*3 +1,sucesion);
-        }
-    }
-
 
     public static void main(String[] args) {
 

@@ -35,9 +35,19 @@ public class incisoI {
         r += lista.get(size - 1);
         return sumarLinkedList(r, lista, size - 1);
     }
-    public static LinkedList combinar (LinkedList<Integer> lista,LinkedList<Integer> lista2){
-        lista.addAll(lista2);
-        Collections.sort(lista);
-        return lista;
+
+    public static LinkedList combinar (LinkedList<Integer> lista,LinkedList<Integer> lista2) {
+
+        LinkedList<Integer> newList = new LinkedList<>();
+        while (!lista.isEmpty() && !lista2.isEmpty()) {
+            if (lista.getFirst() < lista2.getFirst()) {
+                newList.add(lista.removeFirst()); // cuando eliminas, a la vez devuelve el eliminado
+            } else
+                newList.add(lista2.removeFirst());
+        }
+        newList.addAll(lista);
+        newList.addAll(lista2);
+        return newList;
     }
-}
+
+    }

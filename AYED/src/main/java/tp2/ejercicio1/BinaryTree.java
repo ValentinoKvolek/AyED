@@ -1,4 +1,4 @@
-package tp2.ejercicio1;
+package main.java.tp2.ejercicio1;
 
 import java.util.Queue;
 import java.util.LinkedList;
@@ -84,11 +84,11 @@ public class BinaryTree <T> {
 		}
 		  int contadorHojas = 0;
 		if(this.hasLeftChild()) {
-			contador += this.getLeftChild().contarHojas();
+			contadorHojas += this.getLeftChild().contarHojas();
 		}
 
 		if(this.hasRightChild()) {
-			contador += this.getRightChild().contarHojas();
+			contadorHojas += this.getRightChild().contarHojas();
 		}
 
 		return contadorHojas;
@@ -101,8 +101,10 @@ public class BinaryTree <T> {
 		if (this.isLeaf()) {
 			return this;
 		}
+
 		// en este caso al intercambiar, aunque se NUll uno de los dos o los dos inclusive.
 		//no hay error ya que solamente estamos asignando un valor null no estamos accediendo.
+
 		BinaryTree<T> temp = this.leftChild;
 		this.leftChild = this.rightChild;
 		this.rightChild = temp;
@@ -118,8 +120,28 @@ public class BinaryTree <T> {
 
 	// 0<=n<=m
 	public void entreNiveles(int n, int m){
+		if(n > m) {
+			return;
+		}
+		if(n > 0){
+			if(this.hasLeftChild()) {
+				this.leftChild.entreNiveles(n-1, m-1);
+			}
+			if(this.hasRightChild()) {
+				this.rightChild.entreNiveles(n-1, m-1);
+			}
+		} else if (m>=0) {
+			System.out.println(this);
+			if(this.hasLeftChild()) {
+				this.leftChild.entreNiveles(0, m-1);
+			}
+			if(this.hasRightChild()) {
+				this.rightChild.entreNiveles(0, m-1);
+			}
 
-   }
+		}
+
+	}
 		
 }
 

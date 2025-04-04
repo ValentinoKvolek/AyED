@@ -10,7 +10,7 @@ tipo arreglo).
 c. Devuelva lo pedido sin usar parámetros ni la sentencia "return
 
  */
-package tp1.ejercicio5;
+package main.java.tp1.ejercicio5;
 
 import java.util.Arrays;
 

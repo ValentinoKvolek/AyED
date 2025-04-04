@@ -1,4 +1,4 @@
-package tp1.ejercicio7;
+package main.java.tp1.ejercicio7;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,19 +15,20 @@ public class IncisoH {
         arrayList.add(4);
         arrayList.add(5);
         System.out.println(arrayList);
-        List<Integer> resultado = invertirArrayList(arrayList);
-        System.out.println(resultado);
+        invertirArrayList(arrayList);
+        System.out.println(arrayList);
 
 
     }
 
 
-    public static List invertirArrayList(ArrayList<Integer> arrayList){
+    public static void invertirArrayList(ArrayList<Integer> arrayList){
 
-        Collections.reverse(arrayList);
-
-        return arrayList;
-
+        if(!arrayList.isEmpty()){
+             int primero = arrayList.get(0);
+             arrayList.remove(0);
+             invertirArrayList(arrayList);
+             arrayList.add(primero);
+        }
     }
-
 }

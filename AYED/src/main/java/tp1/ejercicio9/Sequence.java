@@ -1,4 +1,4 @@
-package tp1.ejercicio9;
+package main.java.tp1.ejercicio9;
 
 public abstract class Sequence {
     public abstract int size();

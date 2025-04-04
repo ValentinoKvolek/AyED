@@ -1,4 +1,4 @@
-package tp1.ejercicio4;
+package main.java.tp1.ejercicio4;
 
 public class tp1_ejer4 {
 
