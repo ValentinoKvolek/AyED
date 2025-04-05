@@ -3,6 +3,9 @@ package main.java.tp2.ejercicio3;
 import main.java.tp2.ejercicio1.BinaryTree;
 import main.java.tp2.ejercicio5.ProfundidadDeArbolBinario;
 
+import main.java.tp2.ejercicio3.ContadorArbol;
+import main.java.tp2.ejercicio5.ProfundidadDeArbolBinario;
+
 public class TestInt{
 
     public static void main(String[] args) {
