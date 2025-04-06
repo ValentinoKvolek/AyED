@@ -23,6 +23,7 @@ public class ProfundidadDeArbolBinario {
             ab = cola.dequeue();
 
             if(aux >= profundidad) {
+
                 if(ab != null) {
                     suma += ab.getData();
                 }
