@@ -73,8 +73,37 @@ public class BinaryTree <T> {
 		return this.rightChild!=null;
 	}
 	@Override
+
 	public String toString() {
-		return this.getData().toString();
+		return toString("", SON_STATUS.NONE);
+	}
+
+	private enum SON_STATUS {
+		NONE, UP, DOWN;
+	}
+
+	public String toString(String spacing, SON_STATUS sonstat) {
+		if (this.isLeaf())
+			return spacing + data;
+
+		int dataLength = getData().toString().length();
+		String dataLengthSpacing = " ".repeat(dataLength-1);
+
+		String upperSpacing = spacing + (sonstat == SON_STATUS.DOWN ? "║   " : "    ") + dataLengthSpacing;
+		String downSpacing = spacing + (sonstat == SON_STATUS.UP ? "║   " : "    ") + dataLengthSpacing;
+
+		if (this.hasLeftChild() && this.hasRightChild())
+			return this.getRightChild().toString(upperSpacing, SON_STATUS.UP) + "\n" +
+					spacing + data + " ══╣\n" +
+					this.getLeftChild().toString(downSpacing, SON_STATUS.DOWN);
+		if (!this.hasLeftChild() && this.hasRightChild())
+			return this.getRightChild().toString(upperSpacing, SON_STATUS.UP) + "\n" +
+					spacing + data + " ══╝";
+		if (this.hasLeftChild() && !this.hasRightChild())
+			return spacing + data + " ══╗\n" +
+					this.getLeftChild().toString(downSpacing, SON_STATUS.DOWN);
+
+		return "" + data;
 	}
 
 	public  int contarHojas() {
@@ -106,6 +135,7 @@ public class BinaryTree <T> {
 		//no hay error ya que solamente estamos asignando un valor null no estamos accediendo.
 
 		BinaryTree<T> temp = this.leftChild;
+
 		this.leftChild = this.rightChild;
 		this.rightChild = temp;
 
@@ -115,6 +145,7 @@ public class BinaryTree <T> {
 		if (this.hasRightChild()) {
 			this.rightChild = this.rightChild.espejo();
 		}
+
 		return this;
     }
 
