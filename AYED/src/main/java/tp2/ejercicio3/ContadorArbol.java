@@ -1,7 +1,8 @@
-package main.java.tp2.ejercicio1;
+package main.java.tp2.ejercicio3;
+
+import main.java.tp2.ejercicio1.BinaryTree;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class ContadorArbol {
 

@@ -1,6 +1,9 @@
-package main.java.tp2.ejercicio1;
+package main.java.tp2.ejercicio5;
 
-public class TestInt{
+import main.java.tp2.ejercicio1.BinaryTree;
+import main.java.tp2.ejercicio3.ContadorArbol;
+
+public class TestInt {
 
     public static void main(String[] args) {
         BinaryTree<Integer> A = new BinaryTree<>(10);

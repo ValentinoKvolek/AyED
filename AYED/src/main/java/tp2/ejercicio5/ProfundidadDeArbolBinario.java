@@ -1,6 +1,7 @@
-package main.java.tp2.ejercicio1;
+package main.java.tp2.ejercicio5;
 
 import main.java.tp1.ejercicio8.Queue;
+import main.java.tp2.ejercicio1.BinaryTree;
 
 public class ProfundidadDeArbolBinario {
 
