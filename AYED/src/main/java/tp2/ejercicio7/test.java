@@ -54,4 +54,5 @@ public class test {
         System.out.println("num = -3: " + parcialArboles.isLeftTree(-3));
     }
 
+
 }
