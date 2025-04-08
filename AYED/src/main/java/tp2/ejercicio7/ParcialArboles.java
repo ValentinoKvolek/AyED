@@ -133,5 +133,32 @@ public class ParcialArboles {
         return true;
     }
 
+    public BinaryTree<SumDiff> sumAndDif (BinaryTree<Integer> arbol) {
 
+        BinaryTree<Integer> nodo = new BinaryTree<Integer>();
+        BinaryTree<SumDiff> newArbol = new BinaryTree<SumDiff>();
+
+        Queue<BinaryTree<Integer>> cola = new Queue<BinaryTree<Integer>>();
+        Queue<InfoNodo> colaInfoNodo = new Queue<InfoNodo>();
+
+        cola.enqueue(arbol);
+        cola.enqueue(null);
+
+        while(!cola.isEmpty()){
+            nodo = cola.dequeue();
+
+
+            if(nodo != null){
+                if(nodo.hasLeftChild()){
+                    cola.enqueue(nodo.getLeftChild());
+                }
+                if(nodo.hasRightChild()){
+                    cola.enqueue(nodo.getLeftChild());
+                }
+            } else if (!cola.isEmpty()) {
+                cola.enqueue(null);
+            }
+        }
+        return sumAndDif;
+    }
 }
