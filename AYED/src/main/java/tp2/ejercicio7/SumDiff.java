@@ -2,7 +2,7 @@ package main.java.tp2.ejercicio7;
 
 public class SumDiff {
 
-    private int suma;
+    private int suma =0 ;
     private int diferencia;
 
     public SumDiff(int suma, int diferencia) {

@@ -133,32 +133,40 @@ public class ParcialArboles {
         return true;
     }
 
-    public BinaryTree<SumDiff> sumAndDif (BinaryTree<Integer> arbol) {
+    public BinaryTree<?> sumAndDif(BinaryTree<Integer> arbol) {
 
-        BinaryTree<Integer> nodo = new BinaryTree<Integer>();
-        BinaryTree<SumDiff> newArbol = new BinaryTree<SumDiff>();
-
-        Queue<BinaryTree<Integer>> cola = new Queue<BinaryTree<Integer>>();
-        Queue<InfoNodo> colaInfoNodo = new Queue<InfoNodo>();
-
-        cola.enqueue(arbol);
-        cola.enqueue(null);
-
-        while(!cola.isEmpty()){
-            nodo = cola.dequeue();
-
-
-            if(nodo != null){
-                if(nodo.hasLeftChild()){
-                    cola.enqueue(nodo.getLeftChild());
-                }
-                if(nodo.hasRightChild()){
-                    cola.enqueue(nodo.getLeftChild());
-                }
-            } else if (!cola.isEmpty()) {
-                cola.enqueue(null);
-            }
+        if (arbol == null || arbol.isEmpty()) {
+            return new BinaryTree<>();
         }
-        return sumAndDif;
+
+        BinaryTree<SumDiff> newArbol = new BinaryTree<>();
+
+        procesarNodo(arbol, newArbol, 0, 0);// suma inicial 0 y padre inicial 0 por enunciado.
+
+        return newArbol;
+
+    }
+
+    private void procesarNodo(BinaryTree<Integer> original, BinaryTree<SumDiff> result, int sumaAcumulada, int valorPadre) {
+
+        if (original.isEmpty()) {
+            return;
+        }
+
+        int valorActual = original.getData(); // futuro nodo padre.
+        int nuevaSuma = sumaAcumulada + valorActual;
+        int diferencia = valorActual - valorPadre;
+        result.setData(new SumDiff(nuevaSuma,diferencia)); //cargo el nodo actual.
+
+        if (original.hasLeftChild()) {
+            BinaryTree<SumDiff> left = new BinaryTree<>(); //creo nuevo nodo hijo.
+            result.addLeftChild(left);
+            procesarNodo(original.getLeftChild(), left, nuevaSuma, valorActual);
+        }
+        if (original.hasRightChild()) {
+            BinaryTree<SumDiff> right = new BinaryTree<>(); //creo nuevo nodo hijo.
+            result.addRightChild(right);
+            procesarNodo(original.getRightChild(), right, nuevaSuma, valorActual);
+        }
     }
 }
