@@ -9,10 +9,12 @@ public class RecorridosAG {
     public List<Integer> numerosImparesMayoresQuePreOrden(GeneralTree<Integer> a,Integer n) {
 
         List<Integer> aux = new LinkedList<Integer>();
+
         /*
          Metodo que retorna una lista con los elementos impares del árbol “a” que sean mayores al valor “n”
          pasados como parámetros, recorrido en preorden
          */
+
         if(!a.isEmpty() && a != null){
 
             if(a.getData() %2 != 0 && a.getData() > n){
