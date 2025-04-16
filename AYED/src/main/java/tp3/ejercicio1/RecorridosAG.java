@@ -15,7 +15,7 @@ public class RecorridosAG {
          pasados como parámetros, recorrido en preorden
          */
 
-        if(!a.isEmpty() && a != null){
+        if(!a.isEmpty()){
 
             if(a.getData() %2 != 0 && a.getData() > n){
                 aux.add(a.getData());
@@ -32,5 +32,43 @@ public class RecorridosAG {
         }
 
         return  aux;
+    }
+
+    public List<Integer> numerosImparesMayoresQueInOrden (GeneralTree <Integer> a, Integer n){
+
+
+        /*
+
+         Metodo que retorna una lista con los elementos impares del árbol “a” que sean mayores al valor “n”
+         pasados como parámetros, recorrido en inorden
+
+        */
+
+        List<Integer> aux = new LinkedList<Integer>();
+
+        if(!a.isEmpty()){
+
+            List<GeneralTree<Integer>> children = a.getChildren();
+
+
+            //procesa el primer hijo subarbol.
+            if (!children.isEmpty()) {
+
+                //si ese sub arbol tiene un hijo lo procesa.
+                aux.addAll(numerosImparesMayoresQueInOrden(children.get(0), n));
+            }
+
+            if(a.getData() %2 != 0 && a.getData() > n){
+                aux.add(a.getData());
+            }
+
+            //procesa los 'hermanos del primer hijo sub arbol.'
+            for (int i = 1; i < children.size(); i++) {
+                aux.addAll(numerosImparesMayoresQueInOrden(children.get(i), n));
+            }
+
+        }
+        return aux;
+
     }
 }
