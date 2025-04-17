@@ -110,17 +110,19 @@ public class RecorridosAG {
             queue.enqueue(a); // encolo raiz;
 
             while (!queue.isEmpty()) {
-                GeneralTree<Integer> tree_aux = queue.dequeue();
+
+                GeneralTree<Integer> tree_aux = queue.dequeue(); // pongo nodo actual en tree_aux;
 
                 Integer data = tree_aux.getData();
                 if (data % 2 != 0 && data > n) {
                     aux.add(data);
                 }
-                List<GeneralTree<Integer>> children = tree_aux.getChildren();
+
+                List<GeneralTree<Integer>> children = tree_aux.getChildren(); //pongo en una lista todos los hijo del nodo actual.
 
                 for (GeneralTree<Integer> child : children) {
                     if (child != null && !child.isEmpty()) {
-                        queue.enqueue(child);
+                        queue.enqueue(child);   //por cada hijo encolo.
                     }
                 }
             }
