@@ -164,7 +164,7 @@ public class GeneralTree<T>{
 
 		// Si no es el nodo con a, busco en los hijos
 		for (GeneralTree<T> hijo : nodo.getChildren()) {
-			if (buscarAncestro(hijo, a, b)) {
+			if (buscarAncestro(hijo, a, b)) {  //  unica forma que esto de true, es que exista el nodo a en el arbol y que b sea hijo si no es false.
 				return true;
 			}
 		}
