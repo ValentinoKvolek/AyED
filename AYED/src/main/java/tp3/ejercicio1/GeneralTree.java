@@ -143,4 +143,57 @@ public class GeneralTree<T>{
 		}
 		return max;
 	}
+
+	public boolean esAncestro(T a, T b) {
+
+		if (this.isEmpty()) {
+			return false;
+		}
+
+		return buscarAncestro(this, a, b);
+	}
+
+
+	private boolean buscarAncestro(GeneralTree<T> nodo, T a, T b) {
+
+		if(nodo.getData().equals(a)){   //si encontre el nodo voy a ver si B es hijo de A
+			if (buscarValor(nodo,b)){
+				return true;
+			}
+		}
+
+		// Si no es el nodo con a, busco en los hijos
+		for (GeneralTree<T> hijo : nodo.getChildren()) {
+			if (buscarAncestro(hijo, a, b)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
+	//voy buscando el valor en los hijos de a a ver si alguno coincide.
+	private boolean buscarValor(GeneralTree<T> nodo, T b){
+
+
+		//si esta vacio :
+		if (nodo == null || nodo.isEmpty()) {
+			return false;
+		}
+
+		if (nodo.getData().equals(b)) {
+			return true;
+		}
+
+		// Buscar en los hijos
+		for (GeneralTree<T> hijo : nodo.getChildren()) {
+			if (buscarValor(hijo, b)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }
