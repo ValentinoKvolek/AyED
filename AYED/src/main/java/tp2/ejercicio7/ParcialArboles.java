@@ -156,6 +156,7 @@ public class ParcialArboles {
         int valorActual = original.getData(); // futuro nodo padre.
         int nuevaSuma = sumaAcumulada + valorActual;
         int diferencia = valorActual - valorPadre;
+
         result.setData(new SumDiff(nuevaSuma,diferencia)); //cargo el nodo actual.
 
         if (original.hasLeftChild()) {
