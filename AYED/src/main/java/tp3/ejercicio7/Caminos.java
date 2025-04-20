@@ -41,7 +41,7 @@ public class Caminos {
         if(nodo.isLeaf()){
 
             if(camino.size() > maximo.size()){
-                maximo.clear();;
+                maximo.clear();
                 maximo.addAll(camino);
             }
         }
