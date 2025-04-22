@@ -1,74 +1,48 @@
 package main.java.tp3.ejercicio10;
 
 import main.java.tp3.ejercicio1.GeneralTree;
+import org.ietf.jgss.GSSName;
 
-import javax.xml.transform.Result;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ParcialArboles10 {
 
 
-    public List<Integer> resolver(GeneralTree<Integer> arbol){
+    public static List<Integer> resolver(GeneralTree<Integer> arbol){
+        List<Integer> camMax = new LinkedList<>();
+        List<Integer> camAct = new LinkedList<>();
+        Maximo max = new Maximo(-1);
+        int maxAct=  -1;
+        int nivel = 0;
 
-        List <Integer> resultado = new LinkedList<Integer>();
-
-        int cantNivel = 0;
-
-        int maximo =0;
-
-        int caminoMax= Integer.MIN_VALUE;
-
-        resolverRec(arbol, resultado, cantNivel, maximo, caminoMax);
-
-        return  resultado;
-
+        resolverR(arbol,camMax,camAct, max, maxAct, nivel);
+        return camMax;
     }
 
-    private List<Integer> resolverRec(GeneralTree<Integer> nodo, List<Integer> resultado, int cantNivel, int maximo, int caminoMax){
+    public static void resolverR(GeneralTree<Integer> nodo,List<Integer> camMax, List<Integer> camAct, Maximo max, int maxAct, int nivel) {
 
-            List <Integer> aux = new LinkedList<Integer>();
+        if(nodo.getData() == 1){
+            camAct.add(nodo.getData());
+            maxAct+= nodo.getData()* nivel;
+        }
 
-            if(nodo.isEmpty()){
-                return resultado;
+        if(!nodo.isLeaf()){
+            nivel++;
+            List<GeneralTree<Integer>> nodos = nodo.getChildren();
+            for(GeneralTree<Integer> n : nodos){
+                resolverR(n, camMax, camAct, max, maxAct, nivel);
             }
+        }
+        if(maxAct > max.getMax()){
+            max.setMax(maxAct);
+            camMax.removeAll(camMax);
+            camMax.addAll(camAct);
+            maxAct=0;
+        }
 
-            if(!nodo.isLeaf()){
-
-                if(nodo.getData() == 1){
-                    aux.add(nodo.getData()); //add el 1.
-                }
-
-                maximo = maximo + ( nodo.getData() * cantNivel);
-
-                List<GeneralTree<Integer>> hijos  = nodo.getChildren();
-
-                cantNivel++;
-
-                for(GeneralTree<Integer> hijo : hijos ){
-
-                    resolverRec(hijo, resultado,cantNivel,maximo, caminoMax);
-
-                }
-
-                return resultado;
-
-            }
-
-            if(nodo.getData() == 1){
-
-                aux.add(nodo.getData()); //add el 1.
-
-            }
-
-            maximo = maximo + ( nodo.getData() * cantNivel);
-
-            if (maximo > caminoMax){
-
-                resultado.addAll(aux);
-
-            }
-
-            return resultado;
+        if(nodo.getData() == 1){
+            camAct.removeLast();
+        }
     }
 }
