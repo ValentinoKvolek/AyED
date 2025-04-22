@@ -28,9 +28,9 @@ public class ParcialArboles {
                 return;
             }
 
-            if(!nodo.isLeaf()){
+            int hijoMin= 99;
 
-                int hijoMin= 99;
+            if(!nodo.isLeaf()){
 
                 List<GeneralTree<Integer>> hijos = nodo.getChildren();
 
@@ -50,6 +50,7 @@ public class ParcialArboles {
                     return;
                 }
             }
+
             return;
     }
 }
