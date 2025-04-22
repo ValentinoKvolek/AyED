@@ -38,7 +38,7 @@ public class ParcialArboles10 {
             max.setMax(maxAct);
             camMax.removeAll(camMax);
             camMax.addAll(camAct);
-            maxAct=0;
+            maxAct -= nodo.getData() * nivel; // Restar el peso del nodo actual
         }
 
         if(nodo.getData() == 1){
