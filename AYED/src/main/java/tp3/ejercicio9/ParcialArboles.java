@@ -6,29 +6,22 @@ import java.util.List;
 
 public class ParcialArboles {
 
-    static boolean cumple;
 
-
-    public static boolean  esDeSeleccion(GeneralTree<Integer> arbol){
+    public  boolean  esDeSeleccion(GeneralTree<Integer> arbol){
 
         //devuelve true si el árbol recibido por parámetro es de selección, falso sino lo es.
 
-        cumple = true;
-
-        esDeSeleccionRec(arbol);
-
-
-        return cumple;
+        return esDeSeleccionRec(arbol);
 
     }
 
-    private static void esDeSeleccionRec(GeneralTree<Integer> nodo){
+    private boolean esDeSeleccionRec(GeneralTree<Integer> nodo){
 
             if(nodo.isEmpty()){
-                return;
+                return true;
             }
 
-            int hijoMin= 99;
+            int hijoMin=Integer.MAX_VALUE;
 
             if(!nodo.isLeaf()){
 
@@ -42,15 +35,16 @@ public class ParcialArboles {
 
                     }
 
-                    esDeSeleccionRec(hijo);
+                    if (!esDeSeleccionRec(hijo)){
+                        return  false;
+                    }
                 }
 
                 if(nodo.getData() != hijoMin){
-                    cumple= false;
-                    return;
+                    return false;
                 }
             }
 
-            return;
+            return true;
     }
 }
