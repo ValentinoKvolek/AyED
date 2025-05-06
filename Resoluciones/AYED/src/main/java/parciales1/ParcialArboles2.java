@@ -26,7 +26,6 @@ public class ParcialArboles2 {
     private boolean resolverR(BinaryTree<Integer> nodo, int min, LinkedList<Integer> resueltado, LinkedList<Integer> caminoActual) {
 
         if (!(nodo.getData() ==  null)){
-
             caminoActual.add(nodo.getData()); //ya sea un nodo o una hoja. no me importa mientras no sea (mas chequeo para buena practica que otra cosa..) lo agrego.
         }
 
@@ -43,15 +42,15 @@ public class ParcialArboles2 {
 
         if(nodo.isLeaf()){
 
-            int cantP =0;
+            int cantP = 0;
 
             for (Integer numero : caminoActual) {
-                if(numero %2 ==0 ){
+                if (numero % 2 == 0) {
                     cantP++;
                 }
             }
 
-            if(cantP >= min ){
+            if (cantP >= min) {
 
                 resueltado.addAll(caminoActual);
                 return true;
