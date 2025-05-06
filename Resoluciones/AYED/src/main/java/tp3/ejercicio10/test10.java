@@ -1,5 +1,6 @@
 package main.java.tp3.ejercicio10;
 
+import main.java.parciales1.ParcialArboles;
 import main.java.tp3.ejercicio1.GeneralTree;
 
 public class test10 {
@@ -60,8 +61,10 @@ public class test10 {
         tree_3_1_1.addChild(tree_3_1_1_1);
         tree_3_1_1.addChild(tree_3_1_1_2);
 
-        ParcialArboles10 arbol = new ParcialArboles10();
-        System.out.println(arbol.resolver(tree));
+        ParcialArboles parcial = new ParcialArboles();
+        parcial.arbol = tree; // Asignás el árbol al campo de la clase
+
+        System.out.println(parcial.nivel(3));
 
     }
 
