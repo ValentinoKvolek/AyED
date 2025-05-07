@@ -29,24 +29,23 @@ public class ParcialArboles3 {
 
             int cantHijosActual = queue.size(); //cantidad de hijos que tiene el nodo
 
-           for (int i = 0; i < cantHijosActual; i++) {
+            for (int i = 0; i < cantHijosActual; i++) {
 
-               GeneralTree<Integer> aux = queue.dequeue();
+                GeneralTree<Integer> aux = queue.dequeue();
 
-               if (i == posSig) {
+                if (i == posSig) {
 
-                   res.add(aux); //agrego camino valido.
+                    res.add(aux); //agrego camino valido.
 
-                   auxp = aux.getData(); //actualizo la prox pos.
+                    auxp = aux.getData(); //actualizo la prox pos.
 
-                   for(GeneralTree<Integer> hijo : aux.getChildren()) {
-                       queue.enqueue(hijo);
-                   }
+                    for(GeneralTree<Integer> hijo : aux.getChildren()) {
+                        queue.enqueue(hijo);
+                    }
+                }
+            }
 
-               }
-           }
-
-           posSig = auxp;
+            posSig = auxp;
 
         }
 
