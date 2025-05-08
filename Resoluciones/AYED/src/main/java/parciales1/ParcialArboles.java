@@ -16,6 +16,7 @@ public class ParcialArboles {
 
         LinkedList<Integer>resultado = new LinkedList<>(); // aca guardo el result.
 
+
         Queue<GeneralTree<Integer>> cola = new Queue<GeneralTree<Integer>>();
 
         cola.enqueue(arbol); //raiz
@@ -39,9 +40,7 @@ public class ParcialArboles {
                     if (hijo != null){
                         cola.enqueue(hijo);
                     }
-
                 }
-
             }
             else {
                 if (!cola.isEmpty()) {
@@ -58,9 +57,11 @@ public class ParcialArboles {
                     }
 
                     if(cumple){
+
                         for (GeneralTree<Integer> nodo : nivelActual) {
                             resultado.add(nodo.getData());
                         }
+
                         return resultado;
                     }
 
