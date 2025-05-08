@@ -16,7 +16,6 @@ public class ParcialArboles {
 
         LinkedList<Integer>resultado = new LinkedList<>(); // aca guardo el result.
 
-
         Queue<GeneralTree<Integer>> cola = new Queue<GeneralTree<Integer>>();
 
         cola.enqueue(arbol); //raiz

@@ -4,6 +4,7 @@ import main.java.tp1.ejercicio8.Queue;
 import main.java.tp3.ejercicio1.GeneralTree;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class ParcialArboles3 {
 
@@ -11,46 +12,43 @@ public class ParcialArboles3 {
     GeneralTree<Integer> tree;
 
 
-    public LinkedList<GeneralTree<Integer>> resolver(GeneralTree<Integer> tree) {
+    public LinkedList<Integer> resolver(GeneralTree<Integer> tree) {
 
-        LinkedList<GeneralTree<Integer>>res = new LinkedList<GeneralTree<Integer>>();
 
-        Queue<GeneralTree<Integer>> queue = new Queue<>();
+        LinkedList<Integer> resultado = new LinkedList<>();
 
-        int posSig = tree.getData();
+        resultado.add(tree.getData());//la raiz va si o si
 
-        int auxp=0;
+        resolverR(tree, resultado);
 
-        res.add(tree); //guardo la raiz
+        return resultado;
 
-        queue.enqueue(tree);
 
-        while(!queue.isEmpty()) {
+    }
 
-            int cantHijosActual = queue.size(); //cantidad de hijos que tiene el nodo
+    public boolean resolverR(GeneralTree<Integer> nodo, LinkedList<Integer> resultado) {
 
-            for (int i = 0; i < cantHijosActual; i++) {
+        List<GeneralTree<Integer>> hijos = nodo.getChildren();
 
-                GeneralTree<Integer> aux = queue.dequeue();
+        int pos = nodo.getData();
+        int posActual = 0;
 
-                if (i == posSig) {
+        for (GeneralTree<Integer> hijo : hijos) {
 
-                    res.add(aux); //agrego camino valido.
+            posActual ++;
 
-                    auxp = aux.getData(); //actualizo la prox pos.
-
-                    for(GeneralTree<Integer> hijo : aux.getChildren()) {
-                        queue.enqueue(hijo);
-                    }
-                }
+            if(posActual == pos) {
+                resultado.add(hijo.getData());
+                if (resolverR(hijo, resultado)){
+                    return true;
+                };
             }
-
-            posSig = auxp;
-
         }
 
-        return res;
+        //cuando llegue a una hoja
+        return true;
     }
+
 
 
 }
