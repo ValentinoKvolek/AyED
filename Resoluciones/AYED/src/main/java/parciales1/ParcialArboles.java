@@ -9,72 +9,51 @@ import java.util.List;
 
 public class ParcialArboles {
 
-    public GeneralTree<Integer> arbol;
+    GeneralTree<Integer> tree;
 
 
-    public LinkedList<Integer> nivel(int num){
+    public List<Integer> nivel(int num) {
 
-        LinkedList<Integer>resultado = new LinkedList<>(); // aca guardo el result.
+        List<Integer> resultado = new LinkedList<>();
 
-        Queue<GeneralTree<Integer>> cola = new Queue<GeneralTree<Integer>>();
+        boolean cumple = false;
 
-        cola.enqueue(arbol); //raiz
+        Queue<GeneralTree<Integer>> queue = new Queue<>();
 
-        LinkedList<GeneralTree<Integer>> nivelActual = new LinkedList<>();
+        queue.enqueue(tree);
+        queue.enqueue(null); //marca de nivel.
 
-        cola.enqueue(null); // marca para saber que ese nivel termino.
+        while (!queue.isEmpty()) {
 
-        while (!cola.isEmpty()){
+            GeneralTree<Integer> nodo = queue.dequeue();
 
-            GeneralTree<Integer> aux = cola.dequeue();
+            if (nodo != null) {
 
-            if (aux != null && aux.getData() != null){
+                int cantH = 0;
 
-                nivelActual.add(aux);
-
-                List<GeneralTree<Integer>> hijos = aux.getChildren();
-
-                for (GeneralTree<Integer> hijo : hijos){
-
-                    if (hijo != null){
-                        cola.enqueue(hijo);
-                    }
+                for(GeneralTree<Integer> hijo : nodo.getChildren()) {
+                    cantH++;
+                    queue.enqueue(hijo);
                 }
-            }
-            else {
-                if (!cola.isEmpty()) {
 
-                    boolean cumple = true;
+                if(cantH == num) {
+                    resultado.add(nodo.getData());
+                    cumple = true;
+                }else cumple = false;  //esto lo hago para que si un solo hijo de todos los del nivel no cumple no retorne.
 
-                    for (GeneralTree<Integer> nodo : nivelActual){
+            }else{
 
-                        if(nodo.getChildren().size() < num) { //comparo la cantidad de hijos que tienen todos los nodos de ese nivel.
-                            cumple = false;
-                            break;
-                        }
-
-                    }
-
-                    if(cumple){
-
-                        for (GeneralTree<Integer> nodo : nivelActual) {
-                            resultado.add(nodo.getData());
-                        }
-
-                        return resultado;
-                    }
-
-
-                    nivelActual.clear();
-
-                    cola.enqueue(null); //marca de nivel
-
+                if (cumple){
+                    return resultado;
                 }
+
+                resultado.clear();
+
+                queue.enqueue(null);
             }
         }
 
         return resultado;
-
     }
 
 }

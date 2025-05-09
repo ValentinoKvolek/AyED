@@ -61,10 +61,6 @@ public class test10 {
         tree_3_1_1.addChild(tree_3_1_1_1);
         tree_3_1_1.addChild(tree_3_1_1_2);
 
-        ParcialArboles parcial = new ParcialArboles();
-        parcial.arbol = tree; // Asignás el árbol al campo de la clase
-
-        System.out.println(parcial.nivel(3));
 
     }
 

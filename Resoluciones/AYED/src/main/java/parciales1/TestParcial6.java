@@ -18,8 +18,10 @@ public class TestParcial6 {
 
         raiz.addLeftChild(n1);
         raiz.addRightChild(n2);
+
         n1.addLeftChild(h1);
         n2.addLeftChild(h2);
+
         n2.addRightChild(h3);
         h2.addLeftChild(h4);
 

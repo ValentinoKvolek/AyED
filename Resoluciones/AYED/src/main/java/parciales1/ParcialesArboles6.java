@@ -55,10 +55,10 @@ public class ParcialesArboles6 {
 
         BinaryTree<Integer> nuevoNodo = new BinaryTree<Integer>();
 
-
         nuevoNodo.setData(nodo.getData());
 
         arbolNuevo.addRightChild(nuevoNodo);
+
     }
 
 

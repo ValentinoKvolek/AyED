@@ -22,38 +22,35 @@ public class ParcialArboles4 {
     }
 
 
-
     private boolean caminoR(GeneralTree<Integer> nodo, int num, List<Integer> resultado, List<Integer> camino) {
 
+        if (!nodo.isLeaf()){
 
-        if (!nodo.isLeaf()) {
+            List<GeneralTree<Integer>> children = nodo.getChildren();
 
-            List<GeneralTree<Integer>> hijos = nodo.getChildren();
-
-            if (hijos.size() < num) {
+            if (children.size() >= num){
+                camino.add(nodo.getData());
+            }else{
                 return false;
             }
 
-            camino.add(nodo.getData());
-
-            for (GeneralTree<Integer> hijo : hijos){
-
-                if (caminoR(hijo, num, resultado, camino)) {
+            for (GeneralTree<Integer> child : children){
+                if(caminoR(child, num, resultado, camino)){
                     return true;
                 }
 
             }
-        }
+        }else{
 
-        if(nodo.isLeaf()){
             camino.add(nodo.getData());
+
             resultado.addAll(camino);
             return true;
         }
 
-        camino.removeLast();
         return false;
-
     }
+
+
 
 }

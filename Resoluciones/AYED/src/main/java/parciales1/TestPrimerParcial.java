@@ -18,8 +18,10 @@ public class TestPrimerParcial {
             // Segundo nivel (hijos de 8)
             GeneralTree<Integer> nodo5 = new GeneralTree<>(5);
             GeneralTree<Integer> nodo22 = new GeneralTree<>(22);
+            GeneralTree<Integer> nodo7 = new GeneralTree<>(7);
             nodo8.addChild(nodo5);
             nodo8.addChild(nodo22);
+            nodo8.addChild(nodo7);
 
             // Segundo nivel (hijo de -5)
             GeneralTree<Integer> nodo19 = new GeneralTree<>(19);
@@ -41,10 +43,9 @@ public class TestPrimerParcial {
             nodo19.addChild(new GeneralTree<>(8));
 
             ParcialArboles parcial = new ParcialArboles();
-            parcial.arbol = tree; // Asignás el árbol al campo de la clase
-
+            parcial.tree= tree;
             System.out.println("Resultado:");
-            System.out.println(parcial.nivel(4)); // Probá con el número de hijos mínimo por nivel que querés evaluar
+            System.out.println(parcial.nivel(3)); // Probá con el número de hijos mínimo por nivel que querés evaluar
 
 
         }
