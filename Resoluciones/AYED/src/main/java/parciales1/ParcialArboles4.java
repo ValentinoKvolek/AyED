@@ -21,6 +21,8 @@ public class ParcialArboles4 {
 
     }
 
+
+
     private boolean caminoR(GeneralTree<Integer> nodo, int num, List<Integer> resultado, List<Integer> camino) {
 
 
@@ -39,6 +41,7 @@ public class ParcialArboles4 {
                 if (caminoR(hijo, num, resultado, camino)) {
                     return true;
                 }
+
             }
         }
 
