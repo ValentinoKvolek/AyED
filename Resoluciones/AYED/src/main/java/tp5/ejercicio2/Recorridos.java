@@ -72,7 +72,7 @@ public class Recorridos <T> {
 
     }
 
-    private void bfs (int i, Graph<T> grafo, boolean[] marca, List<T> res){\
+    private void bfs (int i, Graph<T> grafo, boolean[] marca, List<T> res){
 
         Queue<Vertex<T>> q = new Queue<Vertex<T>>(); //cola de vertices
         q.enqueue(grafo.getVertex(i));
@@ -80,6 +80,7 @@ public class Recorridos <T> {
 
         //en colo el vertice en el cola y lo marco como visitado.
         while (!q.isEmpty()){
+
             Vertex<T> w = q.dequeue();
             res.add(w.getData());
             List<Edge<T>> adyacentes = grafo.getEdges(w);
@@ -88,6 +89,7 @@ public class Recorridos <T> {
                 marca[j] = true;
                 q.enqueue(e.getTarget());
             }
+
         }
     }
 
