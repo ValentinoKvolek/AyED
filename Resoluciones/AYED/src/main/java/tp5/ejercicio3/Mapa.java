@@ -90,17 +90,9 @@ public class Mapa {
         if (ciudad1 == null || ciudad2 == null){
             return camino;
         }
-        Vertex<String> origen = null;
-        Vertex<String> destino = null;
 
-        for (Vertex<String> v : mapaCiudades.getVertices()) {
-            if (v.getData().equals(ciudad1)) {
-                origen = v;
-            }
-            if (v.getData().equals(ciudad2)) {
-                destino = v;
-            }
-        }
+        Vertex<String> origen = this.mapaCiudades.search(ciudad1);
+        Vertex<String> destino = this.mapaCiudades.search(ciudad2);
 
         if (origen == null || destino == null){
             return camino; //si no existen, no hay camino posible
@@ -117,11 +109,10 @@ public class Mapa {
         }
 
     }
-    private boolean dfsExeptuando(int i ,  int f, Graph<String> grafo, boolean[] visitados, List<String> camino, List<String> ciudades) {
+    private boolean dfsExeptuando(int i , int f, Graph<String> grafo, boolean[] visitados, List<String> camino, List<String> ciudades) {
 
         visitados[i] = true;
         Vertex<String> v = grafo.getVertex(i);
-
         if(ciudades.contains(v.getData())) {
             return false;
         }
@@ -139,9 +130,60 @@ public class Mapa {
                 }
             }
         }
-
         camino.remove(camino.size()-1);
         return false;
     }
+
+    public List<String> caminoMasCorto (String ciudad1, String ciudad2) {
+
+        List<String> caminoMin = new ArrayList<>();
+
+        boolean[] visitados = new boolean[mapaCiudades.getSize()];
+
+        if(!this.mapaCiudades.isEmpty()){
+
+            Vertex<String> origen = this.mapaCiudades.search(ciudad1);
+            Vertex<String> destino = this.mapaCiudades.search(ciudad2);
+
+            if (origen != null || destino != null){
+                caminoMasCortoDfs(origen.getPosition(), destino.getPosition(),mapaCiudades,visitados,new ArrayList<>(), caminoMin, Integer.MAX_VALUE, 0);
+            }
+        }
+
+        return caminoMin;
+
+    }
+
+    private int caminoMasCortoDfs(int i , int f, Graph<String> grafo , boolean[] visitados, List<String> caminoAct , List<String> caminoMin, int min, int distancia) {
+
+        visitados[i] = true;
+
+        Vertex<String> v = grafo.getVertex(i);
+
+        caminoAct.add(v.getData());
+
+        if( v.getData().equals(grafo.getVertex(f).getData()) && distancia < min) {
+
+            caminoMin.removeAll(caminoMin);
+            caminoMin.addAll(caminoAct);
+            min=distancia;
+
+        }
+
+        List<Edge<String>> adyacentes = grafo.getEdges(v);
+
+        for (Edge<String> e : adyacentes) {
+            int j = e.getTarget().getPosition();
+            if (!visitados[j]) {
+                distancia = distancia + e.getWeight() ;
+                min = caminoMasCortoDfs(j, f, grafo, visitados,caminoAct, caminoMin, min, distancia);
+            }
+        }
+
+        caminoAct.remove(caminoAct.size()-1);
+        visitados[i] = false;
+        return min;
+    }
+
 
 }
