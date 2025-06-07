@@ -318,10 +318,8 @@ public class Mapa {
                 }
             }
         }
-
         caminoAct.remove(caminoAct.size()-1);
         visitados[i]=  false;
-
         return min;
     }
 
