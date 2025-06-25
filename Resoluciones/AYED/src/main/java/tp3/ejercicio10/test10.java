@@ -1,6 +1,5 @@
 package main.java.tp3.ejercicio10;
 
-import main.java.parciales1.ParcialArboles;
 import main.java.tp3.ejercicio1.GeneralTree;
 
 public class test10 {
