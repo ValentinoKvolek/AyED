@@ -83,8 +83,16 @@ public class BinaryTree <T> {
 	}
 
 	public String toString(String spacing, SON_STATUS sonstat) {
+		String cdata;
+		if (data instanceof int[]) {
+			System.out.println("ASDJASLDAKDALKDAS");
+			cdata = "[" + ((int[])data)[0] + ", " + ((int[])data)[1] + "]";
+		} else {
+			cdata = data.toString();
+		}
+
 		if (this.isLeaf())
-			return spacing + data;
+			return spacing + cdata;
 
 		int dataLength = getData().toString().length();
 		String dataLengthSpacing = " ".repeat(dataLength-1);
@@ -94,13 +102,13 @@ public class BinaryTree <T> {
 
 		if (this.hasLeftChild() && this.hasRightChild())
 			return this.getRightChild().toString(upperSpacing, SON_STATUS.UP) + "\n" +
-					spacing + data + " ══╣\n" +
+					spacing + cdata + " ══╣\n" +
 					this.getLeftChild().toString(downSpacing, SON_STATUS.DOWN);
 		if (!this.hasLeftChild() && this.hasRightChild())
 			return this.getRightChild().toString(upperSpacing, SON_STATUS.UP) + "\n" +
-					spacing + data + " ══╝";
+					spacing + cdata + " ══╝";
 		if (this.hasLeftChild() && !this.hasRightChild())
-			return spacing + data + " ══╗\n" +
+			return spacing + cdata + " ══╗\n" +
 					this.getLeftChild().toString(downSpacing, SON_STATUS.DOWN);
 
 		return "" + data;
